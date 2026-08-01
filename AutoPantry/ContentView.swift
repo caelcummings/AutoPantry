@@ -7,18 +7,20 @@
 
 import SwiftUI
 
+/// Legacy entry — the app launches `RootView` from `AutoPantryApp`.
+/// Preview `RootView` or `OnboardingFlowView` instead.
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        RootView()
     }
 }
 
-#Preview {
+#Preview("App (Onboarding)") {
     ContentView()
+        .environmentObject(AppState(route: .onboarding))
+}
+
+#Preview("App (Main)") {
+    ContentView()
+        .environmentObject(AppState(route: .main))
 }

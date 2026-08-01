@@ -1,0 +1,2038 @@
+{
+  "version": 5,
+  "source": "AutoPantry Recipe List.xlsx",
+  "exportedRecipeCount": 31,
+  "recipes": [
+    {
+      "id": "Garlic-Naan-Butter-Chicken",
+      "title": "Garlic Naan Butter Chicken",
+      "imageURL": "https://images.pexels.com/photos/10615283/pexels-photo-10615283.jpeg",
+      "cookMinutes": 40,
+      "calories": 700,
+      "proteinGrams": 55,
+      "carbsGrams": 75,
+      "fatGrams": 40,
+      "servings": 4,
+      "ingredientCount": 9,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "chicken thighs",
+          "amount": "24 oz"
+        },
+        {
+          "name": "garlic naan",
+          "amount": "4"
+        },
+        {
+          "name": "white rice",
+          "amount": "2 cups"
+        },
+        {
+          "name": "butter chicken sauce",
+          "amount": "16 oz"
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "paprika",
+          "amount": ""
+        },
+        {
+          "name": "onion powder",
+          "amount": ""
+        },
+        {
+          "name": "garlic powder",
+          "amount": ""
+        },
+        {
+          "name": "black pepper",
+          "amount": ""
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Buffalo-Chicken-Wraps",
+      "title": "Buffalo Chicken Wraps",
+      "imageURL": "https://images.pexels.com/photos/37324429/pexels-photo-37324429.jpeg",
+      "cookMinutes": 15,
+      "calories": 550,
+      "proteinGrams": 40,
+      "carbsGrams": 55,
+      "fatGrams": 35,
+      "servings": 6,
+      "ingredientCount": 6,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "pulled chicken",
+          "amount": "16 oz"
+        },
+        {
+          "name": "buffalo sauce",
+          "amount": "8 oz"
+        },
+        {
+          "name": "tortilla",
+          "amount": "6"
+        },
+        {
+          "name": "cheddar",
+          "amount": "1 cup"
+        },
+        {
+          "name": "shredded lettuce",
+          "amount": "1 cup"
+        },
+        {
+          "name": "ranch",
+          "amount": "4 oz"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Honey-Black-Pepper-Chicken-Mac",
+      "title": "Honey Black Pepper Chicken Mac",
+      "imageURL": "https://images.pexels.com/photos/28459093/pexels-photo-28459093.jpeg",
+      "cookMinutes": 30,
+      "calories": 520,
+      "proteinGrams": 42,
+      "carbsGrams": 44,
+      "fatGrams": 16,
+      "servings": 4,
+      "ingredientCount": 13,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "cheddar",
+          "amount": "1 cup"
+        },
+        {
+          "name": "mozzarella",
+          "amount": "0.5 cup"
+        },
+        {
+          "name": "elbow noodles",
+          "amount": "4 cups"
+        },
+        {
+          "name": "chicken thighs",
+          "amount": "20 oz"
+        },
+        {
+          "name": "honey",
+          "amount": "0.5 cup"
+        },
+        {
+          "name": "evaporated milk",
+          "amount": "12 oz"
+        },
+        {
+          "name": "soy sauce",
+          "amount": "0.5 cup"
+        },
+        {
+          "name": "apple cider vinegar",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "onion powder",
+          "amount": ""
+        },
+        {
+          "name": "garlic powder",
+          "amount": ""
+        },
+        {
+          "name": "paprika",
+          "amount": ""
+        },
+        {
+          "name": "black pepper",
+          "amount": ""
+        },
+        {
+          "name": "chilli powder",
+          "amount": ""
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Protein-Overnight-Oats",
+      "title": "Protein Overnight Oats",
+      "imageURL": "https://images.pexels.com/photos/11161212/pexels-photo-11161212.jpeg",
+      "cookMinutes": 5,
+      "calories": 670,
+      "proteinGrams": 46,
+      "carbsGrams": 75,
+      "fatGrams": 22,
+      "servings": 1,
+      "ingredientCount": 9,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "rolled oats",
+          "amount": "0.5 cup"
+        },
+        {
+          "name": "milk",
+          "amount": "1 cup"
+        },
+        {
+          "name": "protein powder",
+          "amount": "1 scoop"
+        },
+        {
+          "name": "peanut butter",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "chia seeds",
+          "amount": "1tsp"
+        },
+        {
+          "name": "banana",
+          "amount": ""
+        },
+        {
+          "name": "blueberries",
+          "amount": ""
+        },
+        {
+          "name": "syrup",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "cinnamon",
+          "amount": ""
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Philly-Cheesesteak",
+      "title": "Philly Cheesesteak",
+      "imageURL": "https://images.pexels.com/photos/29839696/pexels-photo-29839696.jpeg",
+      "cookMinutes": 30,
+      "calories": 550,
+      "proteinGrams": 45,
+      "carbsGrams": 65,
+      "fatGrams": 40,
+      "servings": 6,
+      "ingredientCount": 10,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "onion",
+          "amount": "1"
+        },
+        {
+          "name": "green pepper",
+          "amount": "2"
+        },
+        {
+          "name": "beef shaved steak",
+          "amount": "14 oz"
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "garlic powder",
+          "amount": ""
+        },
+        {
+          "name": "onion powder",
+          "amount": ""
+        },
+        {
+          "name": "black pepper",
+          "amount": ""
+        },
+        {
+          "name": "steak seasoning",
+          "amount": ""
+        },
+        {
+          "name": "provolone",
+          "amount": "6 slices"
+        },
+        {
+          "name": "brioche hotdog buns",
+          "amount": "6"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Korean-Beef-Rice-Bowl",
+      "title": "Korean Beef Rice Bowl",
+      "imageURL": "https://images.pexels.com/photos/32436917/pexels-photo-32436917.jpeg",
+      "cookMinutes": 35,
+      "calories": 925,
+      "proteinGrams": 53,
+      "carbsGrams": 90,
+      "fatGrams": 37,
+      "servings": 2,
+      "ingredientCount": 11,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "ground beef",
+          "amount": "1 lb"
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "pepper",
+          "amount": ""
+        },
+        {
+          "name": "white rice",
+          "amount": "1 cup"
+        },
+        {
+          "name": "soy sauce",
+          "amount": "0.5 cup"
+        },
+        {
+          "name": "garlic clove",
+          "amount": "3"
+        },
+        {
+          "name": "sesame oil",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "brown sugar",
+          "amount": "0.25 cup"
+        },
+        {
+          "name": "green onion",
+          "amount": "1"
+        },
+        {
+          "name": "egg",
+          "amount": "2"
+        },
+        {
+          "name": "canola oil",
+          "amount": "1tbsp"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Honey-Siracha-Chicken-Fried-Rice",
+      "title": "Honey Siracha Chicken Fried Rice",
+      "imageURL": "https://images.pexels.com/photos/14709739/pexels-photo-14709739.jpeg",
+      "cookMinutes": 40,
+      "calories": 550,
+      "proteinGrams": 48,
+      "carbsGrams": 57,
+      "fatGrams": 12,
+      "servings": 4,
+      "ingredientCount": 12,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "chicken breast",
+          "amount": "24 oz"
+        },
+        {
+          "name": "garlic salt",
+          "amount": ""
+        },
+        {
+          "name": "onion powder",
+          "amount": ""
+        },
+        {
+          "name": "corn starch",
+          "amount": "3 tbsp"
+        },
+        {
+          "name": "soy sauce",
+          "amount": "4 tbsp"
+        },
+        {
+          "name": "frozen mixed vegetables",
+          "amount": "0.5 cup"
+        },
+        {
+          "name": "egg",
+          "amount": "3"
+        },
+        {
+          "name": "white rice",
+          "amount": "2.5 cups"
+        },
+        {
+          "name": "sesame oil",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "honey",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "srircha",
+          "amount": "4 tbsp"
+        },
+        {
+          "name": "rice vinegar",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Cheesy-Chorizo-Quesadilla",
+      "title": "Cheesy Chorizo Quesadilla",
+      "imageURL": "https://images.pexels.com/photos/18300864/pexels-photo-18300864.jpeg",
+      "cookMinutes": 20,
+      "calories": 720,
+      "proteinGrams": 36,
+      "carbsGrams": 33,
+      "fatGrams": 48,
+      "servings": 4,
+      "ingredientCount": 6,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "tortilla",
+          "amount": "4"
+        },
+        {
+          "name": "chorizo",
+          "amount": "2"
+        },
+        {
+          "name": "mozzarella",
+          "amount": "3 cup"
+        },
+        {
+          "name": "red onion",
+          "amount": "1"
+        },
+        {
+          "name": "garlic clove",
+          "amount": "2"
+        },
+        {
+          "name": "chipotle in adobo sauce",
+          "amount": "4 tsp"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Meatball-Subs",
+      "title": "Meatball Subs",
+      "imageURL": "https://images.pexels.com/photos/36501098/pexels-photo-36501098.jpeg",
+      "cookMinutes": 30,
+      "calories": 535,
+      "proteinGrams": 29,
+      "carbsGrams": 34,
+      "fatGrams": 30,
+      "servings": 6,
+      "ingredientCount": 4,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "meatballs",
+          "amount": "12"
+        },
+        {
+          "name": "marinara sauce",
+          "amount": "1 jar"
+        },
+        {
+          "name": "brioche hot dog buns",
+          "amount": "6"
+        },
+        {
+          "name": "mozzarella",
+          "amount": "6 slices"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Sweet-Potato-Street-Corn-Bowl-with-Hot-Honey",
+      "title": "Sweet Potato Street Corn Bowl with Hot Honey",
+      "imageURL": "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg",
+      "cookMinutes": 45,
+      "calories": 890,
+      "proteinGrams": 43,
+      "carbsGrams": 72,
+      "fatGrams": 48,
+      "servings": 3,
+      "ingredientCount": 12,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "ground beef",
+          "amount": "1 lb"
+        },
+        {
+          "name": "sweet potato fries",
+          "amount": "20 oz"
+        },
+        {
+          "name": "yellow onion",
+          "amount": "1"
+        },
+        {
+          "name": "corn",
+          "amount": "2.5 cup"
+        },
+        {
+          "name": "mayo",
+          "amount": "3 tbsp"
+        },
+        {
+          "name": "sour cream",
+          "amount": "3tbsp"
+        },
+        {
+          "name": "queso fresco cheese",
+          "amount": "1 cup"
+        },
+        {
+          "name": "limes",
+          "amount": ""
+        },
+        {
+          "name": "jalape\u00f1o",
+          "amount": "1"
+        },
+        {
+          "name": "cilantro",
+          "amount": ""
+        },
+        {
+          "name": "hot honey",
+          "amount": ""
+        },
+        {
+          "name": "chili powder",
+          "amount": ""
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Egg-Frittata-Bake",
+      "title": "Egg Frittata Bake",
+      "imageURL": "https://images.pexels.com/photos/4103221/pexels-photo-4103221.jpeg",
+      "cookMinutes": 45,
+      "calories": 422,
+      "proteinGrams": 30,
+      "carbsGrams": 32,
+      "fatGrams": 6,
+      "servings": 6,
+      "ingredientCount": 8,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "egg",
+          "amount": "8"
+        },
+        {
+          "name": "milk",
+          "amount": "0.25 cup"
+        },
+        {
+          "name": "onion",
+          "amount": "1/2"
+        },
+        {
+          "name": "bell pepper",
+          "amount": "1/2"
+        },
+        {
+          "name": "baby spinach",
+          "amount": "4 cups"
+        },
+        {
+          "name": "diced ham",
+          "amount": "2 cups"
+        },
+        {
+          "name": "olive oil",
+          "amount": "0.25 cup"
+        },
+        {
+          "name": "feta cheese",
+          "amount": "2 cups"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Creamy-Cajun-Sausage-Shells",
+      "title": "Creamy Cajun Sausage Shells",
+      "imageURL": "https://images.pexels.com/photos/33023063/pexels-photo-33023063.jpeg",
+      "cookMinutes": 30,
+      "calories": 922,
+      "proteinGrams": 28,
+      "carbsGrams": 69,
+      "fatGrams": 60,
+      "servings": 4,
+      "ingredientCount": 15,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "sausage",
+          "amount": "2"
+        },
+        {
+          "name": "bell pepper",
+          "amount": "2"
+        },
+        {
+          "name": "mozzarella",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "parmesan",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "olive oil",
+          "amount": ""
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "pepper",
+          "amount": ""
+        },
+        {
+          "name": "paprika",
+          "amount": ""
+        },
+        {
+          "name": "garlic powder",
+          "amount": ""
+        },
+        {
+          "name": "onion powder",
+          "amount": ""
+        },
+        {
+          "name": "chile powder",
+          "amount": ""
+        },
+        {
+          "name": "shells",
+          "amount": "6 cups"
+        },
+        {
+          "name": "minced garlic",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "butter",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "heavy cream",
+          "amount": "1 1/2 cup"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Creamy-Tuscan-Chicken-Pasta",
+      "title": "Creamy Tuscan Chicken Pasta",
+      "imageURL": "https://images.pexels.com/photos/37118296/pexels-photo-37118296.jpeg",
+      "cookMinutes": 40,
+      "calories": 1020,
+      "proteinGrams": 75,
+      "carbsGrams": 89,
+      "fatGrams": 39,
+      "servings": 4,
+      "ingredientCount": 14,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "chicken breast",
+          "amount": "28 oz"
+        },
+        {
+          "name": "paprika",
+          "amount": ""
+        },
+        {
+          "name": "garlic powder",
+          "amount": ""
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "pepper",
+          "amount": ""
+        },
+        {
+          "name": "olive oil",
+          "amount": ""
+        },
+        {
+          "name": "red onion",
+          "amount": "1/2"
+        },
+        {
+          "name": "garlic cloves",
+          "amount": "3"
+        },
+        {
+          "name": "heavy cream",
+          "amount": "1 cup"
+        },
+        {
+          "name": "milk",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "parmesan",
+          "amount": "1 cup"
+        },
+        {
+          "name": "baby spinach",
+          "amount": "2 cups"
+        },
+        {
+          "name": "sun dried tomatoes",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "italian herbs",
+          "amount": ""
+        },
+        {
+          "name": "pasta",
+          "amount": "14 ounces"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Creamy-Garlic-Cheesy-Chicken-Potatoes",
+      "title": "Creamy Garlic Cheesy Chicken Potatoes",
+      "imageURL": "https://images.pexels.com/photos/10338429/pexels-photo-10338429.jpeg",
+      "cookMinutes": 35,
+      "calories": 502,
+      "proteinGrams": 53,
+      "carbsGrams": 38,
+      "fatGrams": 15,
+      "servings": 4,
+      "ingredientCount": 13,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "chicken breast",
+          "amount": "28 oz"
+        },
+        {
+          "name": "garlic cloves",
+          "amount": "3"
+        },
+        {
+          "name": "onion powder",
+          "amount": ""
+        },
+        {
+          "name": "mixed herbs",
+          "amount": ""
+        },
+        {
+          "name": "chilli flakes",
+          "amount": ""
+        },
+        {
+          "name": "paprika",
+          "amount": ""
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "olive oil",
+          "amount": ""
+        },
+        {
+          "name": "potatoes",
+          "amount": "28 oz"
+        },
+        {
+          "name": "milk",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "light cream cheese",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "parmesan",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "mozzarella",
+          "amount": "1/2 cup"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "One-Pot-Cajun-Sausage-Pasta",
+      "title": "One Pot Cajun Sausage Pasta",
+      "imageURL": "https://images.pexels.com/photos/35065626/pexels-photo-35065626.jpeg",
+      "cookMinutes": 40,
+      "calories": 905,
+      "proteinGrams": 37,
+      "carbsGrams": 97,
+      "fatGrams": 43,
+      "servings": 4,
+      "ingredientCount": 11,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "sausage",
+          "amount": "2"
+        },
+        {
+          "name": "onion",
+          "amount": "1/2"
+        },
+        {
+          "name": "minced garlic",
+          "amount": "tbsp"
+        },
+        {
+          "name": "chicken broth",
+          "amount": "2 1/2 cups"
+        },
+        {
+          "name": "heavy cream",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "fire roasted tomatoes",
+          "amount": "1 can"
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "pepper",
+          "amount": ""
+        },
+        {
+          "name": "paprika",
+          "amount": ""
+        },
+        {
+          "name": "farfalle pasta",
+          "amount": "16 oz"
+        },
+        {
+          "name": "cheddar",
+          "amount": "2 cups"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Satay-Salmon-Rice-Bowl",
+      "title": "Satay Salmon Rice Bowl",
+      "imageURL": "https://images.pexels.com/photos/5984483/pexels-photo-5984483.jpeg",
+      "cookMinutes": 45,
+      "calories": 975,
+      "proteinGrams": 50,
+      "carbsGrams": 100,
+      "fatGrams": 42,
+      "servings": 2,
+      "ingredientCount": 11,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "salmon fillets",
+          "amount": "2"
+        },
+        {
+          "name": "soy sauce",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "honey",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "garlic clove",
+          "amount": "1"
+        },
+        {
+          "name": "coriander",
+          "amount": ""
+        },
+        {
+          "name": "peanut butter",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "ginger",
+          "amount": ""
+        },
+        {
+          "name": "lime",
+          "amount": "1"
+        },
+        {
+          "name": "rice",
+          "amount": "1 cup"
+        },
+        {
+          "name": "avocado",
+          "amount": "1"
+        },
+        {
+          "name": "broccoli",
+          "amount": "2 cups"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Avocado-Lime-Chicken-Bowl",
+      "title": "Avocado Lime Chicken Bowl",
+      "imageURL": "https://images.pexels.com/photos/32981296/pexels-photo-32981296.jpeg",
+      "cookMinutes": 30,
+      "calories": 800,
+      "proteinGrams": 53,
+      "carbsGrams": 103,
+      "fatGrams": 18,
+      "servings": 2,
+      "ingredientCount": 9,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "chicken thighs",
+          "amount": "12 oz"
+        },
+        {
+          "name": "plain greek yogurt",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "limes",
+          "amount": ""
+        },
+        {
+          "name": "avocado",
+          "amount": "1"
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "garlic clove",
+          "amount": "1"
+        },
+        {
+          "name": "cilantro",
+          "amount": ""
+        },
+        {
+          "name": "corn",
+          "amount": "1.5 cups"
+        },
+        {
+          "name": "white rice",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Chicken-Poke-Bowl",
+      "title": "Chicken Poke Bowl",
+      "imageURL": "https://images.pexels.com/photos/16585776/pexels-photo-16585776.jpeg",
+      "cookMinutes": 45,
+      "calories": 632,
+      "proteinGrams": 62,
+      "carbsGrams": 83,
+      "fatGrams": 9,
+      "servings": 4,
+      "ingredientCount": 7,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "japanese sauce",
+          "amount": ""
+        },
+        {
+          "name": "cucumber",
+          "amount": "1"
+        },
+        {
+          "name": "white rice",
+          "amount": "2 cups"
+        },
+        {
+          "name": "red onion",
+          "amount": "1/2"
+        },
+        {
+          "name": "chicken breast",
+          "amount": "24 oz"
+        },
+        {
+          "name": "spicy mayo",
+          "amount": ""
+        },
+        {
+          "name": "shelled edamame",
+          "amount": "16 oz"
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Protein-Cinnamon-Sugar-Bites",
+      "title": "Protein Cinnamon Sugar Bites",
+      "imageURL": "https://images.pexels.com/photos/19950294/pexels-photo-19950294.jpeg",
+      "cookMinutes": 20,
+      "calories": 550,
+      "proteinGrams": 27,
+      "carbsGrams": 105,
+      "fatGrams": 23,
+      "servings": 2,
+      "ingredientCount": 8,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "plain greek yogurt",
+          "amount": "3/4 cup"
+        },
+        {
+          "name": "flour",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "protein powder",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "baking powder",
+          "amount": "1/2 cup"
+        },
+        {
+          "name": "salt",
+          "amount": "1/2 tsp"
+        },
+        {
+          "name": "avocado oil",
+          "amount": ""
+        },
+        {
+          "name": "butter",
+          "amount": "3tbsp"
+        },
+        {
+          "name": "cinnamon",
+          "amount": ""
+        },
+        {
+          "name": "sugar",
+          "amount": ""
+        }
+      ],
+      "instructions": []
+    },
+    {
+      "id": "Hot-Honey-Chicken-Sliders",
+      "title": "Hot Honey Chicken Sliders",
+      "imageURL": "https://images.pexels.com/photos/35836913/pexels-photo-35836913.jpeg",
+      "cookMinutes": 25,
+      "calories": 560,
+      "proteinGrams": 56,
+      "carbsGrams": 33,
+      "fatGrams": 21,
+      "servings": 6,
+      "ingredientCount": 23,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "chicken breast",
+          "amount": "28 oz"
+        },
+        {
+          "name": "paprika",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "onion powder",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "garlic powder",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "cayenne pepper",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "black pepper",
+          "amount": ""
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "oil",
+          "amount": ""
+        },
+        {
+          "name": "red onion",
+          "amount": "1/2"
+        },
+        {
+          "name": "corn",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "cheddar",
+          "amount": "4 oz"
+        },
+        {
+          "name": "oregano",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "hot sauce",
+          "amount": "1/4 cup"
+        },
+        {
+          "name": "honey",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "mayo",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "sriracha",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "brioche burger buns",
+          "amount": "6"
+        },
+        {
+          "name": "Swiss cheese",
+          "amount": "4 oz"
+        },
+        {
+          "name": "sliced pickles",
+          "amount": ""
+        },
+        {
+          "name": "mozzarella",
+          "amount": "8.8 oz"
+        },
+        {
+          "name": "butter",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "garlic paste",
+          "amount": "1/2 tsp"
+        },
+        {
+          "name": "parsley flakes",
+          "amount": ""
+        }
+      ],
+      "instructions": [
+        "Season 28 oz sliced chicken breast with paprika, onion powder, garlic powder, cayenne, black pepper, and salt.",
+        "Cook in a skillet over medium heat with oil, red onion, sweetcorn, and hot sauce until cooked through.",
+        "Stir in honey and 3.2 oz cheddar.",
+        "Mix 2 tbsp light mayo, 1 tbsp sriracha, and 1 tsp honey for the sauce.",
+        "Spread sriracha mayo on 6 brioche buns, top with chicken, 3.5 oz Swiss, pickles, and 8.8 oz mozzarella.",
+        "Brush bun tops with melted light butter, garlic paste, and parsley, then bake at 375\u00b0F until cheese is melted."
+      ]
+    },
+    {
+      "id": "Banana-Pancakes",
+      "title": "Banana Pancakes",
+      "imageURL": "https://images.pexels.com/photos/11653224/pexels-photo-11653224.jpeg",
+      "cookMinutes": 20,
+      "calories": 469,
+      "proteinGrams": 15,
+      "carbsGrams": 88,
+      "fatGrams": 8,
+      "servings": 2,
+      "ingredientCount": 6,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "flour",
+          "amount": "1 cup"
+        },
+        {
+          "name": "sugar",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "baking powder",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "milk",
+          "amount": "1 cup"
+        },
+        {
+          "name": "egg",
+          "amount": "1"
+        },
+        {
+          "name": "ripe bananas",
+          "amount": "2"
+        }
+      ],
+      "instructions": [
+        "In a bowl, mash 2 ripe bananas with 1 egg and 1 cup milk.",
+        "Stir in 1 cup flour, 1 tbsp sugar, and 2 tsp baking powder until just combined.",
+        "Heat a lightly greased skillet over medium-low heat.",
+        "Pour batter to form pancakes and cook for 2\u20133 minutes per side until golden brown."
+      ]
+    },
+    {
+      "id": "Simple-Tuna-Salad",
+      "title": "Simple Tuna Salad",
+      "imageURL": "https://images.pexels.com/photos/8199156/pexels-photo-8199156.jpeg",
+      "cookMinutes": 10,
+      "calories": 651,
+      "proteinGrams": 37,
+      "carbsGrams": 6,
+      "fatGrams": 53,
+      "servings": 2,
+      "ingredientCount": 7,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "white tuna",
+          "amount": "7 oz"
+        },
+        {
+          "name": "mayonnaise",
+          "amount": "6 tbsp"
+        },
+        {
+          "name": "sweet pickle relish",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "garlic powder",
+          "amount": "1 pinch"
+        },
+        {
+          "name": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "shredded cheese",
+          "amount": "1 cup"
+        },
+        {
+          "name": "hard-boiled egg",
+          "amount": "1"
+        }
+      ],
+      "instructions": [
+        "In a bowl, combine 7 oz drained white tuna and 1 chopped hard-boiled egg.",
+        "Mix in 6 tbsp light mayo, 1 tbsp sweet pickle relish, garlic powder, and 2 tbsp lemon juice until smooth.",
+        "Fold in 1 cup shredded cheese if using and serve."
+      ]
+    },
+    {
+      "id": "Chilli-Lime-Shrimp-Bowls",
+      "title": "Chilli Lime Shrimp Bowls",
+      "imageURL": "https://images.pexels.com/photos/1832016/pexels-photo-1832016.jpeg",
+      "cookMinutes": 35,
+      "calories": 582,
+      "proteinGrams": 50,
+      "carbsGrams": 70,
+      "fatGrams": 13,
+      "servings": 3,
+      "ingredientCount": 22,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "raw shrimp",
+          "amount": "25 oz"
+        },
+        {
+          "name": "garlic powder",
+          "amount": ""
+        },
+        {
+          "name": "smoked paprika",
+          "amount": ""
+        },
+        {
+          "name": "oregano",
+          "amount": ""
+        },
+        {
+          "name": "cayenne pepper",
+          "amount": ""
+        },
+        {
+          "name": "black pepper",
+          "amount": ""
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "oil",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "diced tomato",
+          "amount": "3.5 oz"
+        },
+        {
+          "name": "red onion",
+          "amount": "1/2"
+        },
+        {
+          "name": "diced pineapple",
+          "amount": "5.5 oz"
+        },
+        {
+          "name": "diced mango",
+          "amount": "5.5 oz"
+        },
+        {
+          "name": "cilantro",
+          "amount": ""
+        },
+        {
+          "name": "lime juice",
+          "amount": "1 lime"
+        },
+        {
+          "name": "plain greek yogurt",
+          "amount": "3.5 oz"
+        },
+        {
+          "name": "light mayo",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "sriracha",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "soy sauce",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "sesame oil",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "honey",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "mashed avocado",
+          "amount": "6 tbsp"
+        },
+        {
+          "name": "cooked white rice",
+          "amount": "4.5 cups"
+        }
+      ],
+      "instructions": [
+        "Season 25 oz raw shrimp with garlic powder, smoked paprika, oregano, cayenne, black pepper, and salt; cook in a skillet with oil for 3\u20134 minutes until pink.",
+        "Dice tomato, red onion, pineapple, and mango, then toss with cilantro, lime juice, and salt to make the salsa.",
+        "Whisk 3.5 oz Greek yogurt, 2 tbsp light mayo, 2 tsp sriracha, 1 tbsp soy sauce, 1 tsp sesame oil, honey, lime juice, and water to make the sauce.",
+        "Assemble 3 bowls with 1.5 cups cooked rice each, top with shrimp, salsa, 2 tbsp mashed avocado, and chili lime sauce."
+      ]
+    },
+    {
+      "id": "Sourdough-Smash-Burgers",
+      "title": "Sourdough Smash Burgers",
+      "imageURL": "https://images.pexels.com/photos/9606131/pexels-photo-9606131.jpeg",
+      "cookMinutes": 25,
+      "calories": 677,
+      "proteinGrams": 67,
+      "carbsGrams": 39,
+      "fatGrams": 27,
+      "servings": 2,
+      "ingredientCount": 16,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "sourdough slices",
+          "amount": "4"
+        },
+        {
+          "name": "mozzarella",
+          "amount": "2 oz"
+        },
+        {
+          "name": "lean ground beef",
+          "amount": "10 oz"
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "pepper",
+          "amount": ""
+        },
+        {
+          "name": "light cheese slices",
+          "amount": "4"
+        },
+        {
+          "name": "shallots",
+          "amount": "2"
+        },
+        {
+          "name": "jalape\u00f1os",
+          "amount": "2"
+        },
+        {
+          "name": "garlic cloves",
+          "amount": "4"
+        },
+        {
+          "name": "brown stevia",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "white vinegar",
+          "amount": "2 splashes"
+        },
+        {
+          "name": "smoked paprika",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "reduced sugar ketchup",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "light mayo",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "mustard",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "cooking spray",
+          "amount": ""
+        }
+      ],
+      "instructions": [
+        "1.",
+        "Place 2 pieces of sourdough with mozzerella in the middle.",
+        "Spray both sides with cooking oil and air fry on 395 for 10 minutes. 2.",
+        "Take 2.5 oz of beef and smash it into a flat circle on your pan.",
+        "Season with salt and pepper, and cook on high for about 2 minutes per side.",
+        "Add slice of cheese.",
+        "Repeat for a second patty. 3.",
+        "Cook sliced onion and jalepeno in same pan for about 2 minutes, reduce to medium.",
+        "Then add minced garlic, brown sugar, a splash of white vinegar, and paprika until veggies are carmalized. 4.",
+        "Make burger sauce with 2 tbsp ketchup, 1.5 tbsp mayo, and 1/2 tsp mustard. 5.",
+        "Put burger together and enjoy!"
+      ]
+    },
+    {
+      "id": "Breakfast-Burritos",
+      "title": "Breakfast Burritos",
+      "imageURL": "https://images.pexels.com/photos/29333173/pexels-photo-29333173.jpeg",
+      "cookMinutes": 35,
+      "calories": 495,
+      "proteinGrams": 51,
+      "carbsGrams": 12,
+      "fatGrams": 27,
+      "servings": 6,
+      "ingredientCount": 13,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "eggs",
+          "amount": "8"
+        },
+        {
+          "name": "fat free cottage cheese",
+          "amount": "7 oz"
+        },
+        {
+          "name": "low fat cheddar",
+          "amount": "5.5 oz"
+        },
+        {
+          "name": "green bell pepper",
+          "amount": "1"
+        },
+        {
+          "name": "sundried tomatoes",
+          "amount": "6"
+        },
+        {
+          "name": "chopped chives",
+          "amount": ""
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "black pepper",
+          "amount": ""
+        },
+        {
+          "name": "low sugar ketchup",
+          "amount": "0.25 cup"
+        },
+        {
+          "name": "light mayo",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "garlic powder",
+          "amount": ""
+        },
+        {
+          "name": "mozzarella",
+          "amount": "8 oz"
+        },
+        {
+          "name": "low carb tortillas",
+          "amount": "6"
+        }
+      ],
+      "instructions": [
+        "Whisk 8 eggs with salt and pepper, then scramble in a pan until cooked.",
+        "Mix scrambled eggs with 7 oz fat free cottage cheese, 5.5 oz low fat cheddar, diced green bell pepper, 6 diced sundried tomatoes, and chives.",
+        "Combine 0.25 cup low sugar ketchup, 2 tbsp light mayo, and garlic powder for the sauce.",
+        "Spread sauce across 6 low carb tortillas, top each with egg mixture and 8 oz mozzarella total, roll into burritos, and crisp in a pan or bake until cheese melts."
+      ]
+    },
+    {
+      "id": "Steak-Tacos",
+      "title": "Steak Tacos",
+      "imageURL": "https://images.pexels.com/photos/3264572/pexels-photo-3264572.jpeg",
+      "cookMinutes": 35,
+      "calories": 800,
+      "proteinGrams": 70,
+      "carbsGrams": 36,
+      "fatGrams": 40,
+      "servings": 4,
+      "ingredientCount": 15,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "lean flank steak",
+          "amount": "28 oz"
+        },
+        {
+          "name": "chipotle seasoning",
+          "amount": ""
+        },
+        {
+          "name": "salt",
+          "amount": ""
+        },
+        {
+          "name": "cooking spray",
+          "amount": ""
+        },
+        {
+          "name": "salad tomatoes",
+          "amount": "2"
+        },
+        {
+          "name": "red onion",
+          "amount": "1/2"
+        },
+        {
+          "name": "cilantro",
+          "amount": "1 handful"
+        },
+        {
+          "name": "lime juice",
+          "amount": "1 lime"
+        },
+        {
+          "name": "olive oil",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "0% Greek yogurt",
+          "amount": "5.5 oz"
+        },
+        {
+          "name": "avocado",
+          "amount": "1"
+        },
+        {
+          "name": "skimmed milk",
+          "amount": "3.5 fl oz"
+        },
+        {
+          "name": "honey",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "mini tortillas",
+          "amount": "8"
+        },
+        {
+          "name": "low fat cheese",
+          "amount": "8.5 oz"
+        }
+      ],
+      "instructions": [
+        "Make Pico de Gallo: Dice the tomatoes and red onion.",
+        "In a bowl, combine the tomatoes, onion, chopped cilantro, juice of half a lime, olive oil, and a pinch of salt.",
+        "Mix well and set aside.",
+        "Make Avocado Sauce: In a blender or bowl, combine the Greek yogurt, avocado, skimmed milk, remaining lime juice, honey, and a pinch of salt.",
+        "Blend or whisk until smooth and creamy.",
+        "Cook Steak Bites: Dice the flank steak into 1/2-inch cubes.",
+        "Heat a skillet over high heat and coat with cooking spray.",
+        "Season the steak cubes with chipotle seasoning and salt, then cook for 3\u20135 minutes until browned and cooked through.",
+        "Assemble & Toast Tacos: Heat a skillet over medium heat.",
+        "Place a mini tortilla in the skillet, top with low fat cheese, cooked steak bites, pico de gallo, and a drizzle of avocado sauce.",
+        "Fold and toast for 1\u20132 minutes per side until the tortilla is crisp and the cheese is melted.",
+        "Repeat for all 8 tacos."
+      ]
+    },
+    {
+      "id": "Protein-Pancake-Bowls",
+      "title": "Protein Pancake Bowls",
+      "imageURL": "https://images.pexels.com/photos/17751905/pexels-photo-17751905.jpeg",
+      "cookMinutes": 30,
+      "calories": 369,
+      "proteinGrams": 36,
+      "carbsGrams": 6,
+      "fatGrams": 24,
+      "servings": 4,
+      "ingredientCount": 8,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "egg",
+          "amount": "4"
+        },
+        {
+          "name": "0% Greek yogurt",
+          "amount": "7 oz"
+        },
+        {
+          "name": "flour",
+          "amount": "5 oz"
+        },
+        {
+          "name": "milk",
+          "amount": "9.5 fl oz"
+        },
+        {
+          "name": "vanilla protein powder",
+          "amount": "3.5 oz"
+        },
+        {
+          "name": "baking powder",
+          "amount": "4 tsp"
+        },
+        {
+          "name": "honey",
+          "amount": "4 tsp"
+        },
+        {
+          "name": "fresh blueberries",
+          "amount": "6 oz"
+        }
+      ],
+      "instructions": [
+        "Mix Wet & Dry Ingredients: In a large bowl (or distributed across 4 individual oven-safe ramekins/bowls), whisk together the eggs, 0% Greek yogurt, milk, and honey until smooth.",
+        "Add Blueberries: Gently fold in the fresh blueberries, leaving a few to scatter on top of each bowl.",
+        "Bake: Preheat your oven to 350\u00b0F (180\u00b0C).",
+        "Divide the batter evenly into 4 oven-safe bowls if mixed in one container.",
+        "Bake for 20\u201325 minutes until the centers are set and a toothpick inserted comes out clean.",
+        "Allow to cool slightly before serving."
+      ]
+    },
+    {
+      "id": "Nashville-Hot-Chicken-Sandwich",
+      "title": "Nashville Hot Chicken Sandwich",
+      "imageURL": "https://images.pexels.com/photos/6896379/pexels-photo-6896379.jpeg",
+      "cookMinutes": 35,
+      "calories": 563,
+      "proteinGrams": 51,
+      "carbsGrams": 69,
+      "fatGrams": 8,
+      "servings": 2,
+      "ingredientCount": 20,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "chicken breast",
+          "amount": "10.5 oz"
+        },
+        {
+          "name": "brioche buns",
+          "amount": "2"
+        },
+        {
+          "name": "all purpose flour",
+          "amount": "3.5 oz"
+        },
+        {
+          "name": "smoked paprika",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "garlic powder",
+          "amount": "1.5 tsp"
+        },
+        {
+          "name": "onion powder",
+          "amount": "1.5 tsp"
+        },
+        {
+          "name": "black pepper",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "oregano",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "salt",
+          "amount": "1.5 tsp"
+        },
+        {
+          "name": "egg",
+          "amount": "1"
+        },
+        {
+          "name": "pickle juice",
+          "amount": "2 fl oz"
+        },
+        {
+          "name": "cornflakes",
+          "amount": "3.5 oz"
+        },
+        {
+          "name": "cooking spray",
+          "amount": ""
+        },
+        {
+          "name": "buffalo sauce",
+          "amount": "2.5 fl oz"
+        },
+        {
+          "name": "light butter",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "brown stevia",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "cottage cheese",
+          "amount": "5.5 oz"
+        },
+        {
+          "name": "light mayo",
+          "amount": "2.5 tbsp"
+        },
+        {
+          "name": "dill",
+          "amount": "1/2 tsp"
+        },
+        {
+          "name": "honey",
+          "amount": "1 tsp"
+        }
+      ],
+      "instructions": [
+        "In a blender, combine the cottage cheese, light mayo, 1 fl oz pickle juice, 1/4 tsp garlic powder, 1/4 tsp onion powder, 1/4 tsp salt, dill, and honey, then blend until completely smooth to make the dressing.",
+        "Slice the chicken breast into 2 cutlets and set up three shallow bowls: one with flour, 1 tsp paprika, 1 tsp garlic powder, 1 tsp onion powder, 1 tsp pepper, 1 tsp oregano, and 1 tsp salt; the second with egg beaten with 1 fl oz pickle juice; and the third with crushed cornflakes.",
+        "Coat each chicken cutlet in flour, dip into the egg mixture, press firmly into the crushed cornflakes, spray generously with cooking spray, and air fry at 380\u00b0F (190\u00b0C) for 12\u201315 minutes (or bake at 400\u00b0F/200\u00b0C for 18\u201320 minutes), flipping halfway through.",
+        "In a small microwave-safe bowl, melt the light butter, then whisk in buffalo sauce, brown stevia, 1 tsp smoked paprika, and 1/2 tsp garlic powder before brushing generously over the cooked chicken cutlets.",
+        "Toast the brioche buns, layer the bottom bun with coleslaw/sauce, place the glazed hot chicken cutlet on top, and crown with the top bun."
+      ]
+    },
+    {
+      "id": "Raspberry-Greek-Yogurt-Bites",
+      "title": "Raspberry Greek Yogurt Bites",
+      "imageURL": "https://images.pexels.com/photos/5897456/pexels-photo-5897456.jpeg",
+      "cookMinutes": 5,
+      "calories": 112,
+      "proteinGrams": 6,
+      "carbsGrams": 5,
+      "fatGrams": 9,
+      "servings": 4,
+      "ingredientCount": 5,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "0% Greek yogurt",
+          "amount": "6.5 oz"
+        },
+        {
+          "name": "fresh raspberries",
+          "amount": "1 cup"
+        },
+        {
+          "name": "vanilla extract",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "sweetener",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "melted dark chocolate",
+          "amount": "1.5 oz"
+        }
+      ],
+      "instructions": [
+        "In a small bowl, combine the 0% Greek yogurt, vanilla extract, and sweetener until smooth.",
+        "Line a small tray or plate with parchment paper, gently fold the fresh raspberries into the yogurt mixture, and scoop into 4 equal dollops on the parchment paper.",
+        "Place the tray in the freezer for at least 40 minutes until the yogurt bites are firm and set.",
+        "If using dark chocolate, melt it in a microwave-safe bowl in 20-second bursts, dip the frozen yogurt bites into the chocolate to coat, and place back on parchment paper for 1\u20132 minutes until the chocolate shell hardens."
+      ]
+    },
+    {
+      "id": "Creamy-Chipotle-Steak-Burritos",
+      "title": "Creamy Chipotle Steak Burritos",
+      "imageURL": "https://images.pexels.com/photos/18007687/pexels-photo-18007687.jpeg",
+      "cookMinutes": 40,
+      "calories": 1023,
+      "proteinGrams": 68,
+      "carbsGrams": 96,
+      "fatGrams": 41,
+      "servings": 4,
+      "ingredientCount": 18,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "rump steak",
+          "amount": "28 oz"
+        },
+        {
+          "name": "onion powder",
+          "amount": "1.5 tbsp"
+        },
+        {
+          "name": "garlic powder",
+          "amount": "1.5 tbsp"
+        },
+        {
+          "name": "smoked paprika",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "salt",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "black pepper",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "chipotle paste",
+          "amount": "2 tbsp"
+        },
+        {
+          "name": "lime juice",
+          "amount": "3 limes"
+        },
+        {
+          "name": "uncooked white rice",
+          "amount": "6.5 oz"
+        },
+        {
+          "name": "cilantro",
+          "amount": "3 handfuls"
+        },
+        {
+          "name": "fat-free cottage cheese",
+          "amount": "9 oz"
+        },
+        {
+          "name": "honey",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "medium avocados",
+          "amount": "2"
+        },
+        {
+          "name": "red onions",
+          "amount": "2"
+        },
+        {
+          "name": "olive oil",
+          "amount": "1 tbsp"
+        },
+        {
+          "name": "salsa tomatoes",
+          "amount": "4"
+        },
+        {
+          "name": "large tortillas",
+          "amount": "4"
+        },
+        {
+          "name": "shredded mozzarella",
+          "amount": "4.5 oz"
+        }
+      ],
+      "instructions": [
+        "Marinate the rump steaks with 1 tbsp onion powder, 1 tbsp garlic powder, 1 tbsp smoked paprika, 1 tsp salt, 1 tsp black pepper, 1 tbsp chipotle paste, and the juice of 1 lime, then sear in a hot skillet for 3\u20134 minutes per side, let rest, and slice into thin strips.",
+        "Cook the white rice according to package instructions, then stir in the juice of 1.5 limes, 1 handful of chopped cilantro, and salt to taste.",
+        "Blend the fat-free cottage cheese, 1 tbsp chipotle paste, honey, 0.5 tbsp garlic powder, 0.5 tbsp onion powder, and a squeeze of lime juice until completely smooth.",
+        "Mash the avocados with 1 diced red onion, 1 handful of cilantro, juice of 0.5 lime, 1 tsp salt, 1 tsp pepper, and olive oil to make guacamole, then toss the diced salsa tomatoes, remaining red onion, 1 handful of cilantro, lime juice, and salt to make pico de gallo.",
+        "Divide the rice, steak, guacamole, pico, chipotle sauce, and mozzarella evenly among the 4 large tortillas, roll tightly into burritos, and toast in a dry skillet over medium heat for 1\u20132 minutes per side until crisp."
+      ]
+    },
+    {
+      "id": "Spaghetti-and-Meatballs",
+      "title": "Spaghetti and Meatballs",
+      "imageURL": "https://images.pexels.com/photos/6248902/pexels-photo-6248902.jpeg",
+      "cookMinutes": 40,
+      "calories": 600,
+      "proteinGrams": 52,
+      "carbsGrams": 68,
+      "fatGrams": 10,
+      "servings": 4,
+      "ingredientCount": 13,
+      "estimatedPrice": null,
+      "cuisines": [],
+      "ingredients": [
+        {
+          "name": "lean ground beef",
+          "amount": "23 oz"
+        },
+        {
+          "name": "garlic cloves",
+          "amount": "6"
+        },
+        {
+          "name": "chopped basil",
+          "amount": ""
+        },
+        {
+          "name": "salt",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "dried sage",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "onion powder",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "grated Parmesan",
+          "amount": "0.5 oz"
+        },
+        {
+          "name": "panko breadcrumbs",
+          "amount": "1 oz"
+        },
+        {
+          "name": "egg",
+          "amount": "1"
+        },
+        {
+          "name": "chili flakes",
+          "amount": "1 tsp"
+        },
+        {
+          "name": "crushed tomatoes",
+          "amount": "28 oz"
+        },
+        {
+          "name": "stevia",
+          "amount": "2 tsp"
+        },
+        {
+          "name": "uncooked spaghetti",
+          "amount": "10.5 oz"
+        }
+      ],
+      "instructions": [
+        "In a large bowl, mix the lean ground beef, 2 diced garlic cloves, chopped basil, 2 tsp salt, dried sage, onion powder, grated Parmesan, panko breadcrumbs, and egg, then roll into meatballs and air fry at 380\u00b0F (190\u00b0C) for 10\u201312 minutes until cooked through.",
+        "Cook the spaghetti in salted boiling water according to package instructions, reserving 1.5 fl oz of pasta water before draining.",
+        "Heat a pan over medium heat, saut\u00e9 the remaining 4 diced garlic cloves and chili flakes for 1 minute, then add crushed tomatoes, stevia, and a pinch of salt, simmering for 8\u201310 minutes until thickened.",
+        "Toss the cooked meatballs, spaghetti, and reserved pasta water directly into the sauce, stirring well to coat, and garnish with fresh chopped basil and extra Parmesan if desired."
+      ]
+    }
+  ]
+}
