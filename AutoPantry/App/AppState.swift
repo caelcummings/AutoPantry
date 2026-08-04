@@ -87,16 +87,20 @@ final class AppState: ObservableObject {
         }
     }
 
-    /// Liked recipes auto-save to the weekly plan until the meal-count target is met.
+    /// Liked recipes auto-save to the weekly plan. Meals stop once the meal target
+    /// is met; snacks (<300 cal/serving) can still be added afterward.
     @discardableResult
     func addRecipeToWeeklyPlan(_ recipe: RecipeSummary) -> Bool {
         guard !weeklyMealPlan.contains(recipeID: recipe.id) else { return false }
-        guard !hasCompletedWeeklyMeals else { return false }
+        if !recipe.isSnack {
+            guard !hasCompletedWeeklyMeals else { return false }
+        }
 
+        let mealsWereComplete = hasCompletedWeeklyMeals
         weeklyMealPlan.recipes.append(recipe)
 
-        // Celebrate as soon as the week's meal total is reached.
-        if nutritionProfile.progress(for: weeklyMealPlan).mealsComplete {
+        // Celebrate when the week's meal total is first reached (meals only, not snacks).
+        if !mealsWereComplete, nutritionProfile.progress(for: weeklyMealPlan).mealsComplete {
             showPlanCompleteCelebration = true
         }
         persistMealPlan()

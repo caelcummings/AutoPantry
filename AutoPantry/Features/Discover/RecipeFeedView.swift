@@ -70,12 +70,20 @@ struct RecipeFeedView: View {
                     .transition(.opacity)
             }
 
-            if !appState.hasCompletedWeeklyMeals {
+            if shouldShowActionButtons {
                 actionButtons
             }
         }
         .padding(.top, 8)
         .padding(.bottom, 4)
+    }
+
+    private var shouldShowActionButtons: Bool {
+        guard let current = recipe(at: currentIndex) else {
+            return !appState.hasCompletedWeeklyMeals
+        }
+        // Snacks can still be saved after the meal total is met.
+        return !appState.hasCompletedWeeklyMeals || current.isSnack
     }
 
     private var actionButtons: some View {
@@ -127,14 +135,15 @@ struct RecipeFeedView: View {
     private func likeCurrentRecipe() {
         guard let recipe = recipe(at: currentIndex) else { return }
 
-        if appState.hasCompletedWeeklyMeals {
-            flashMessage("Weekly meal total already met!")
+        if appState.hasCompletedWeeklyMeals && !recipe.isSnack {
+            flashMessage("Weekly meal total already met — snacks can still be saved")
             haptic(.light)
             return
         }
 
         if appState.addRecipeToWeeklyPlan(recipe) {
-            flashMessage("Saved \(recipe.title) to your week")
+            let kind = recipe.isSnack ? "snack" : "meal"
+            flashMessage("Saved \(recipe.title) as a \(kind)")
         } else {
             flashMessage("Already in your week")
         }

@@ -17,9 +17,6 @@ struct RecipeSummary: Identifiable, Equatable, Codable {
     var ingredients: [RecipeIngredient]
     var instructions: [String]
 
-    /// At least 1 serving so progress never stalls on bad data.
-    var mealContribution: Int { max(servings, 1) }
-
     var hasMacros: Bool {
         calories != nil && proteinGrams != nil && carbsGrams != nil && fatGrams != nil
     }

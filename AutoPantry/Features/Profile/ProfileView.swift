@@ -136,8 +136,14 @@ struct ProfileView: View {
     }
 
     private func recipeDetailLine(_ recipe: RecipeSummary) -> String {
-        let servingLabel = recipe.mealContribution == 1 ? "1 serving" : "\(recipe.mealContribution) servings"
-        var parts = [servingLabel, "\(recipe.ingredientCount) ingredients"]
+        var parts: [String] = []
+        if recipe.isSnack {
+            parts.append("Snack")
+            parts.append(recipe.portionCount == 1 ? "1 portion" : "\(recipe.portionCount) portions")
+        } else {
+            parts.append(recipe.portionCount == 1 ? "1 serving" : "\(recipe.portionCount) servings")
+        }
+        parts.append("\(recipe.ingredientCount) ingredients")
         if let calories = recipe.calories, let protein = recipe.proteinGrams {
             parts.append("\(calories) cal")
             parts.append("\(protein)g protein")

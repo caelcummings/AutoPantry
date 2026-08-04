@@ -52,7 +52,11 @@ struct RecipeCard: View {
     }
 
     private var servingsAndIngredientsLine: String {
-        let servingLabel = recipe.mealContribution == 1 ? "1 serving" : "\(recipe.mealContribution) servings"
+        if recipe.isSnack {
+            let portionLabel = recipe.portionCount == 1 ? "1 portion" : "\(recipe.portionCount) portions"
+            return "Snack · \(portionLabel) · \(recipe.ingredientCount) ingredients"
+        }
+        let servingLabel = recipe.portionCount == 1 ? "1 serving" : "\(recipe.portionCount) servings"
         return "\(servingLabel) · \(recipe.ingredientCount) ingredients"
     }
 
@@ -74,24 +78,27 @@ struct RecipeCard: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 6) {
                     ForEach(Array(chips.enumerated()), id: \.offset) { _, chip in
-                        metaChip(chip.text, icon: chip.icon)
+                        metaChip(chip.text, icon: chip.icon, emphasized: chip.emphasized)
                     }
                 }
             }
         }
     }
 
-    private var metadataItems: [(text: String, icon: String)] {
+    private var metadataItems: [(text: String, icon: String, emphasized: Bool)] {
         let macros = recipe.effectiveMacros
         let prefix = recipe.hasMacros ? "" : "~"
-        var items: [(String, String)] = []
-        if let cookMinutes = recipe.cookMinutes {
-            items.append(("\(cookMinutes)m", "clock"))
+        var items: [(String, String, Bool)] = []
+        if recipe.isSnack {
+            items.append(("Snack", "carrot.fill", true))
         }
-        items.append(("\(prefix)\(macros.calories) cal", "flame"))
-        items.append(("\(prefix)\(macros.proteinGrams)g P", "bolt.fill"))
+        if let cookMinutes = recipe.cookMinutes {
+            items.append(("\(cookMinutes)m", "clock", false))
+        }
+        items.append(("\(prefix)\(macros.calories) cal", "flame", false))
+        items.append(("\(prefix)\(macros.proteinGrams)g P", "bolt.fill", false))
         if let price = recipe.formattedPrice {
-            items.append((price, "dollarsign.circle"))
+            items.append((price, "dollarsign.circle", false))
         }
         return items
     }
@@ -134,13 +141,13 @@ struct RecipeCard: View {
         )
     }
 
-    private func metaChip(_ text: String, icon: String) -> some View {
+    private func metaChip(_ text: String, icon: String, emphasized: Bool = false) -> some View {
         Label(text, systemImage: icon)
             .font(.caption2.weight(.semibold))
-            .foregroundStyle(.secondary)
+            .foregroundStyle(emphasized ? APTheme.accent : .secondary)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
-            .background(Capsule().fill(Color.primary.opacity(0.06)))
+            .background(Capsule().fill(emphasized ? APTheme.accentMuted : Color.primary.opacity(0.06)))
             .lineLimit(1)
     }
 }

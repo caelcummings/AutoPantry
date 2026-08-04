@@ -128,7 +128,7 @@ struct NutritionProfileStepView: View {
                 .font(.headline)
                 .foregroundStyle(APTheme.accent)
 
-            Text("Recipes fill this total by servings (a 4-serving recipe counts as 4 meals).")
+            Text("Recipes fill this total by servings (a 4-serving recipe counts as 4 meals). Snacks under 300 cal/serving don’t count toward the meal total.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 

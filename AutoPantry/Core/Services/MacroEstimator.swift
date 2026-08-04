@@ -61,4 +61,15 @@ extension RecipeSummary {
     var effectiveMacros: MacroEstimator.Estimate {
         MacroEstimator.estimate(for: self)
     }
+
+    /// Recipes under 300 calories per serving are snacks (not meals).
+    var isSnack: Bool {
+        effectiveMacros.calories < 300
+    }
+
+    /// Portions used for grocery/macro scaling (always at least 1).
+    var portionCount: Int { max(servings, 1) }
+
+    /// Meal slots filled toward the weekly meal target (snacks contribute 0).
+    var mealContribution: Int { isSnack ? 0 : portionCount }
 }

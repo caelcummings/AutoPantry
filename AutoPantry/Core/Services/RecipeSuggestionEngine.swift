@@ -62,27 +62,31 @@ enum RecipeSuggestionEngine {
         plan: WeeklyMealPlan
     ) -> Double {
         let macros = recipe.effectiveMacros
-        let servings = recipe.mealContribution
+        let portions = recipe.portionCount
+        let mealSlots = recipe.mealContribution
         let totals = plan.totalsUsingEstimates
 
-        let addedCalories = macros.calories * servings
-        let addedProtein = macros.proteinGrams * servings
-        let addedCarbs = macros.carbsGrams * servings
-        let addedFat = macros.fatGrams * servings
+        let addedCalories = macros.calories * portions
+        let addedProtein = macros.proteinGrams * portions
+        let addedCarbs = macros.carbsGrams * portions
+        let addedFat = macros.fatGrams * portions
 
         let newCalories = totals.calories + addedCalories
         let newProtein = totals.protein + addedProtein
         let newCarbs = totals.carbs + addedCarbs
         let newFat = totals.fat + addedFat
-        let newMeals = totals.mealCount + servings
+        let newMeals = totals.mealCount + mealSlots
 
         var score = 0.0
 
-        // Prefer recipes whose serving count fits remaining meal slots.
-        if newMeals <= profile.mealsPerWeek {
+        if recipe.isSnack {
+            // Snacks don't fill meal slots; lightly prefer them when macros still need topping up.
+            score += 6
+        } else if newMeals <= profile.mealsPerWeek {
+            // Prefer recipes whose serving count fits remaining meal slots.
             score += 12
-            if servings <= needs.mealsRemaining {
-                score += min(20, Double(servings) * 3)
+            if mealSlots <= needs.mealsRemaining {
+                score += min(20, Double(mealSlots) * 3)
             }
         } else {
             score -= Double(newMeals - profile.mealsPerWeek) * 8
@@ -109,12 +113,14 @@ enum RecipeSuggestionEngine {
         }
 
         // Prefer meals that land near per-meal targets when many meals remain.
-        let targetCalPerMeal = profile.calories.midpoint
-        let targetProteinPerMeal = profile.proteinGrams.midpoint
-        let calDelta = abs(macros.calories - targetCalPerMeal)
-        let proteinDelta = abs(macros.proteinGrams - targetProteinPerMeal)
-        score += max(0, 25 - Double(calDelta) / 25)
-        score += max(0, 20 - Double(proteinDelta) / 3)
+        if !recipe.isSnack {
+            let targetCalPerMeal = profile.calories.midpoint
+            let targetProteinPerMeal = profile.proteinGrams.midpoint
+            let calDelta = abs(macros.calories - targetCalPerMeal)
+            let proteinDelta = abs(macros.proteinGrams - targetProteinPerMeal)
+            score += max(0, 25 - Double(calDelta) / 25)
+            score += max(0, 20 - Double(proteinDelta) / 3)
+        }
 
         // Light randomness so suggestions rotate between good options.
         score += Double.random(in: 0...4)
@@ -127,13 +133,14 @@ extension WeeklyMealPlan {
     var totalsUsingEstimates: WeeklyMacroTotals {
         recipes.reduce(into: WeeklyMacroTotals()) { totals, recipe in
             let macros = recipe.effectiveMacros
-            let servings = recipe.mealContribution
-            // Macros on recipes are per serving; scale by servings toward the week.
-            totals.calories += macros.calories * servings
-            totals.protein += macros.proteinGrams * servings
-            totals.carbs += macros.carbsGrams * servings
-            totals.fat += macros.fatGrams * servings
-            totals.mealCount += servings
+            let portions = recipe.portionCount
+            // Macros on recipes are per serving; scale by portions toward the week.
+            totals.calories += macros.calories * portions
+            totals.protein += macros.proteinGrams * portions
+            totals.carbs += macros.carbsGrams * portions
+            totals.fat += macros.fatGrams * portions
+            // Snacks (<300 cal/serving) do not fill meal slots.
+            totals.mealCount += recipe.mealContribution
         }
     }
 }
