@@ -1,6 +1,8 @@
 import Foundation
 
-/// Ranks discover-feed recipes to help fill weekly macro and meal goals.
+/// Ranks discover-feed recipes to help fill weekly macro and meal goals,
+/// while preferring dishes that reuse ingredients already on the weekly list
+/// so grocery carts stay smaller.
 enum RecipeSuggestionEngine {
     struct MacroNeeds: Equatable {
         var calories: Int
@@ -10,7 +12,15 @@ enum RecipeSuggestionEngine {
         var mealsRemaining: Int
     }
 
-    /// Build a discover deck: smart-ranked with light randomness, or shuffled when the week is complete.
+    /// At or above this weekly meal target, Discover ranks for macros / meal fit.
+    /// Below it, the feed is fully random.
+    private static let smartRankingMealThreshold = 21
+
+    /// Noise added on top of the smart score so equally-good recipes rotate week to week.
+    /// Kept below hard macro penalties (~40–80) so unfit meals stay buried.
+    private static let rankingJitter: ClosedRange<Double> = 0...26
+
+    /// Build a discover deck: smart-ranked when aiming for 21+ meals/week, otherwise fully random.
     static func buildDeck(
         from candidates: [RecipeSummary],
         profile: NutritionProfile,
@@ -19,27 +29,41 @@ enum RecipeSuggestionEngine {
     ) -> [RecipeSummary] {
         guard !candidates.isEmpty else { return [] }
 
-        if isPlanComplete {
+        // Fewer than 21 meals/week → no goal-oriented ranking.
+        if profile.mealsPerWeek < smartRankingMealThreshold {
             return candidates.shuffled()
+        }
+
+        let plannedKeys = shoppableIngredientKeys(from: plan.recipes)
+
+        if isPlanComplete {
+            // Meal slots are full; still surface ingredient-overlapping snacks first.
+            guard !plannedKeys.isEmpty else { return candidates.shuffled() }
+            let scored = candidates.map { recipe -> (RecipeSummary, Double) in
+                (
+                    recipe,
+                    ingredientOverlapScore(recipe: recipe, plannedKeys: plannedKeys)
+                        + Double.random(in: rankingJitter)
+                )
+            }
+            return tieredShuffle(scored.sorted { $0.1 > $1.1 }.map(\.0))
         }
 
         let needs = macroNeeds(profile: profile, plan: plan)
         let scored = candidates.map { recipe -> (RecipeSummary, Double) in
-            (recipe, score(recipe: recipe, needs: needs, profile: profile, plan: plan))
+            (
+                recipe,
+                score(
+                    recipe: recipe,
+                    needs: needs,
+                    profile: profile,
+                    plan: plan,
+                    plannedKeys: plannedKeys
+                )
+            )
         }
 
-        let sorted = scored.sorted { $0.1 > $1.1 }.map(\.0)
-
-        // Keep top smart picks first, but shuffle within tiers so the feed feels fresh.
-        let tierSize = max(8, sorted.count / 5)
-        var deck: [RecipeSummary] = []
-        var index = 0
-        while index < sorted.count {
-            let end = min(index + tierSize, sorted.count)
-            deck.append(contentsOf: sorted[index..<end].shuffled())
-            index = end
-        }
-        return deck
+        return tieredShuffle(scored.sorted { $0.1 > $1.1 }.map(\.0))
     }
 
     static func macroNeeds(profile: NutritionProfile, plan: WeeklyMealPlan) -> MacroNeeds {
@@ -55,11 +79,33 @@ enum RecipeSuggestionEngine {
         )
     }
 
+    /// Keep stronger macro fits toward the front, but shuffle within wide bands
+    /// so the same handful of recipes isn't always first.
+    private static func tieredShuffle(_ sorted: [RecipeSummary]) -> [RecipeSummary] {
+        guard sorted.count > 1 else { return sorted }
+
+        // Wider front band as the catalog grows (~1/3 of recipes compete for early slots).
+        let frontBand = max(15, (sorted.count + 2) / 3)
+        var deck: [RecipeSummary] = []
+        var index = 0
+        var bandSize = frontBand
+
+        while index < sorted.count {
+            let end = min(index + bandSize, sorted.count)
+            deck.append(contentsOf: sorted[index..<end].shuffled())
+            index = end
+            // Later bands stay mixed but get a bit smaller so weak fits stay farther back.
+            bandSize = max(10, bandSize * 2 / 3)
+        }
+        return deck
+    }
+
     private static func score(
         recipe: RecipeSummary,
         needs: MacroNeeds,
         profile: NutritionProfile,
-        plan: WeeklyMealPlan
+        plan: WeeklyMealPlan,
+        plannedKeys: Set<String>
     ) -> Double {
         let macros = recipe.effectiveMacros
         let portions = recipe.portionCount
@@ -122,10 +168,55 @@ enum RecipeSuggestionEngine {
             score += max(0, 20 - Double(proteinDelta) / 3)
         }
 
-        // Light randomness so suggestions rotate between good options.
-        score += Double.random(in: 0...4)
+        // Prefer recipes that reuse shoppable ingredients already in the week.
+        score += ingredientOverlapScore(recipe: recipe, plannedKeys: plannedKeys)
+
+        // Enough jitter to reorder similar macro fits without promoting bad fits.
+        score += Double.random(in: rankingJitter)
 
         return score
+    }
+
+    /// Reward shared grocery items; soft-penalize recipes that add many brand-new ones.
+    private static func ingredientOverlapScore(
+        recipe: RecipeSummary,
+        plannedKeys: Set<String>
+    ) -> Double {
+        guard !plannedKeys.isEmpty else { return 0 }
+
+        let recipeKeys = shoppableIngredientKeys(from: [recipe])
+        guard !recipeKeys.isEmpty else { return 0 }
+
+        let sharedCount = recipeKeys.intersection(plannedKeys).count
+        let newCount = recipeKeys.subtracting(plannedKeys).count
+        let overlapRatio = Double(sharedCount) / Double(recipeKeys.count)
+
+        var bonus = 0.0
+        // Each reused item (chicken, eggs, tortillas…) meaningfully shrinks the list.
+        bonus += Double(sharedCount) * 9
+        // Prefer recipes where most of their shoppable ingredients are already planned.
+        bonus += overlapRatio * 28
+        // Soft cost for introducing many brand-new shoppables.
+        if newCount > 2 {
+            bonus -= Double(newCount - 2) * 2.5
+        }
+
+        // Cap so macros and meal fit still matter.
+        return min(48, max(-12, bonus))
+    }
+
+    /// Keys for ingredients that drive grocery list size (skip pantry staples like salt/oil).
+    private static func shoppableIngredientKeys(from recipes: [RecipeSummary]) -> Set<String> {
+        var keys = Set<String>()
+        for recipe in recipes {
+            for ingredient in recipe.ingredients {
+                let key = IngredientNormalizer.groceryKey(for: ingredient.name)
+                guard !key.isEmpty else { continue }
+                guard !SeasoningMatcher.isPantryStaple(ingredient.name) else { continue }
+                keys.insert(key)
+            }
+        }
+        return keys
     }
 }
 
@@ -139,7 +230,7 @@ extension WeeklyMealPlan {
             totals.protein += macros.proteinGrams * portions
             totals.carbs += macros.carbsGrams * portions
             totals.fat += macros.fatGrams * portions
-            // Snacks (<300 cal/serving) do not fill meal slots.
+            // Snacks (catalog-tagged) do not fill meal slots.
             totals.mealCount += recipe.mealContribution
         }
     }

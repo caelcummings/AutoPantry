@@ -6,6 +6,7 @@ struct MainTabView: View {
 
     enum Tab: Hashable {
         case discover
+        case recipes
         case list
         case profile
     }
@@ -15,6 +16,10 @@ struct MainTabView: View {
             RecipeFeedView()
                 .tabItem { Label("Discover", systemImage: "sparkles") }
                 .tag(Tab.discover)
+
+            RecipesLibraryView()
+                .tabItem { Label("Recipes", systemImage: "book") }
+                .tag(Tab.recipes)
 
             GroceryListView()
                 .tabItem { Label("List", systemImage: "cart") }
@@ -26,14 +31,16 @@ struct MainTabView: View {
         }
         .fullScreenCover(isPresented: $appState.showPlanCompleteCelebration) {
             PlanCompleteCelebrationView(
-                mealCount: appState.weeklyMealPlan.totals.mealCount,
-                totals: appState.weeklyMealPlan.totals,
-                profile: appState.nutritionProfile,
                 onDismiss: {
                     appState.dismissPlanCelebration()
                     selectedTab = .profile
+                },
+                onRedoWeek: {
+                    appState.resetWeeklyPlan()
+                    selectedTab = .discover
                 }
             )
+            .environmentObject(appState)
         }
     }
 }

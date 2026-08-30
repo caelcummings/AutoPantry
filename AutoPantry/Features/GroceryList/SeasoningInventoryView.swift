@@ -16,6 +16,8 @@ struct SeasoningInventoryView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .listRowBackground(Color.clear)
+            } footer: {
+                Text("Saved automatically across app launches.")
             }
 
             if !appState.seasoningInventory.isEmpty {

@@ -1,11 +1,9 @@
 import Foundation
 
-/// Draft collected during onboarding; persisted locally (and later mapped to Firestore).
+/// User profile collected during onboarding and editable later in Profile.
 struct OnboardingDraft: Equatable, Codable {
+    var bodyProfile: UserBodyProfile = .default
     var nutritionProfile: NutritionProfile = NutritionProfile()
-    var budgetRange: BudgetRange = .medium
-    var cookingSkill: CookingSkill = .intermediate
-    var householdSize: Int = 2
 
     /// Human-readable macro summary for profile UI.
     var macroSummaryLine: String {
@@ -13,47 +11,44 @@ struct OnboardingDraft: Equatable, Codable {
         let c = nutritionProfile.calories
         return "\(p.min)–\(p.max)g protein · \(c.min)–\(c.max) cal/day"
     }
-}
 
-enum BudgetRange: String, CaseIterable, Identifiable, Codable {
-    case low
-    case medium
-    case high
-    case dontCare
-
-    var id: String { rawValue }
-
-    var title: String {
-        switch self {
-        case .low: "Budget"
-        case .medium: "Balanced"
-        case .high: "Premium"
-        case .dontCare: "Don't care"
-        }
+    /// True when the user finished onboarding with a usable body + macro profile.
+    var isComplete: Bool {
+        bodyProfile.isValid && nutritionProfile.isValid
     }
 
-    var subtitle: String {
-        switch self {
-        case .low: "~$4–7 / meal"
-        case .medium: "~$7–12 / meal"
-        case .high: "$12+ / meal"
-        case .dontCare: "Show recipes at any price"
-        }
+    /// Re-estimate macros from body metrics while keeping meal count.
+    mutating func applyEstimatedMacros() {
+        nutritionProfile = MacroCalculator.estimate(
+            body: bodyProfile,
+            mealsPerWeek: nutritionProfile.mealsPerWeek
+        )
     }
-}
 
-enum CookingSkill: String, CaseIterable, Identifiable, Codable {
-    case beginner
-    case intermediate
-    case advanced
+    // Backward-compatible decode for profiles saved before body metrics existed.
+    enum CodingKeys: String, CodingKey {
+        case bodyProfile, nutritionProfile
+        case budgetRange, cookingSkill, householdSize // legacy ignored
+    }
 
-    var id: String { rawValue }
+    init(
+        bodyProfile: UserBodyProfile = .default,
+        nutritionProfile: NutritionProfile = NutritionProfile()
+    ) {
+        self.bodyProfile = bodyProfile
+        self.nutritionProfile = nutritionProfile
+    }
 
-    var title: String {
-        switch self {
-        case .beginner: "Beginner"
-        case .intermediate: "Comfortable"
-        case .advanced: "Pro"
-        }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        bodyProfile = try container.decodeIfPresent(UserBodyProfile.self, forKey: .bodyProfile) ?? .default
+        nutritionProfile = try container.decodeIfPresent(NutritionProfile.self, forKey: .nutritionProfile)
+            ?? NutritionProfile()
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(bodyProfile, forKey: .bodyProfile)
+        try container.encode(nutritionProfile, forKey: .nutritionProfile)
     }
 }

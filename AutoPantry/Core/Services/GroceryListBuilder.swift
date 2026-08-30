@@ -7,6 +7,24 @@ struct GroceryListItem: Identifiable, Equatable {
     let aisle: String
     let amounts: [String]
     let recipeCount: Int
+    /// True when the user added this item manually (not from a recipe).
+    let isCustom: Bool
+
+    init(
+        name: String,
+        normalizedName: String,
+        aisle: String,
+        amounts: [String],
+        recipeCount: Int,
+        isCustom: Bool = false
+    ) {
+        self.name = name
+        self.normalizedName = normalizedName
+        self.aisle = aisle
+        self.amounts = amounts
+        self.recipeCount = recipeCount
+        self.isCustom = isCustom
+    }
 
     var detailLine: String? {
         let cleaned = amounts
@@ -15,9 +33,7 @@ struct GroceryListItem: Identifiable, Equatable {
         if cleaned.isEmpty {
             return recipeCount > 1 ? "Used in \(recipeCount) recipes" : nil
         }
-        var seen = Set<String>()
-        let unique = cleaned.filter { seen.insert($0).inserted }
-        let amountText = unique.joined(separator: " + ")
+        let amountText = cleaned.joined(separator: " + ")
         if recipeCount > 1 {
             return "\(amountText) · \(recipeCount) recipes"
         }
@@ -26,12 +42,14 @@ struct GroceryListItem: Identifiable, Equatable {
 }
 
 enum GroceryListBuilder {
-    private static let seasoningAisle = "Pantry staples"
+    static let pantryStaplesAisle = "Pantry staples"
+    static let addedAisle = "Added"
     private static let otherAisle = "Other"
 
     static func build(
         from plan: WeeklyMealPlan,
-        excluding inventory: SeasoningInventory
+        excluding inventory: SeasoningInventory,
+        extras: ExtraGroceryItems = ExtraGroceryItems()
     ) -> [GroceryListItem] {
         struct Aggregate {
             var displayName: String
@@ -44,7 +62,7 @@ enum GroceryListBuilder {
 
         for recipe in plan.recipes {
             for ingredient in recipe.ingredients {
-                let rawName = ingredient.name.trimmingCharacters(in: .whitespacesAndNewlines)
+                let rawName = ingredient.displayName
                 guard !rawName.isEmpty else { continue }
 
                 if inventory.containsIngredient(rawName) {
@@ -62,8 +80,8 @@ enum GroceryListBuilder {
                     current: entry.displayName,
                     candidate: rawName
                 )
-                if !ingredient.amount.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                    entry.amounts.append(ingredient.amount)
+                if !ingredient.displayAmount.isEmpty {
+                    entry.amounts.append(ingredient.displayAmount)
                 }
                 entry.recipeIDs.insert(recipe.id)
                 // If any variant looks like a staple, keep it in that aisle.
@@ -74,19 +92,38 @@ enum GroceryListBuilder {
             }
         }
 
-        return aggregates.map { key, value in
+        var items = aggregates.map { key, value in
             GroceryListItem(
                 name: prettyName(value.displayName),
                 normalizedName: key,
-                aisle: value.isSeasoning ? seasoningAisle : otherAisle,
-                amounts: value.amounts,
+                aisle: value.isSeasoning ? pantryStaplesAisle : otherAisle,
+                amounts: IngredientAmountMerger.combine(value.amounts),
                 recipeCount: value.recipeIDs.count
             )
         }
-        .sorted {
+
+        let existingKeys = Set(items.map(\.normalizedName))
+        for rawName in extras.sortedItems {
+            let key = IngredientNormalizer.groceryKey(for: rawName)
+            guard !key.isEmpty, !existingKeys.contains(key) else { continue }
+            items.append(
+                GroceryListItem(
+                    name: prettyName(rawName),
+                    normalizedName: key,
+                    aisle: addedAisle,
+                    amounts: [],
+                    recipeCount: 0,
+                    isCustom: true
+                )
+            )
+        }
+
+        return items.sorted {
             if $0.aisle != $1.aisle {
-                if $0.aisle == seasoningAisle { return false }
-                if $1.aisle == seasoningAisle { return true }
+                if $0.aisle == addedAisle { return true }
+                if $1.aisle == addedAisle { return false }
+                if $0.aisle == pantryStaplesAisle { return false }
+                if $1.aisle == pantryStaplesAisle { return true }
                 return $0.aisle < $1.aisle
             }
             return $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending

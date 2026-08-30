@@ -2,9 +2,66 @@ import Foundation
 
 /// Canonicalizes ingredient names so near-duplicates merge on the grocery list.
 enum IngredientNormalizer {
+    /// Drops metric slash-alternates such as `1 cup / 120g` → `1 cup`.
+    static func dropMetricAlternates(from raw: String) -> String {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return trimmed }
+
+        let pieces = trimmed
+            .components(separatedBy: "/")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty && !isMetricOnlyMeasurement($0) }
+
+        return pieces.joined(separator: " / ")
+    }
+
+    /// US amount trapped in a name like `sausage (8 oz / 227g`.
+    static func usAmount(fromName rawName: String) -> String {
+        guard let open = rawName.firstIndex(of: "(") else { return "" }
+        var inside = String(rawName[rawName.index(after: open)...])
+        if let close = inside.firstIndex(of: ")") {
+            inside = String(inside[..<close])
+        }
+        return dropMetricAlternates(from: inside)
+    }
+
+    private static func isMetricOnlyMeasurement(_ text: String) -> Bool {
+        let lower = text.lowercased()
+        let usUnits = [
+            "oz", "ounce", "ounces", "cup", "cups", "tbsp", "tsp", "tablespoon",
+            "tablespoons", "teaspoon", "teaspoons", "lb", "lbs", "pound", "pounds",
+            "pint", "pints", "quart", "quarts", "fl oz", "stick", "clove", "cloves",
+        ]
+        if usUnits.contains(where: { lower.range(of: #"\b\#($0)\b"#, options: .regularExpression) != nil }) {
+            return false
+        }
+
+        return lower.range(
+            of: #"(\d[\d.,]*\s*(kg|ml|g|l)\b|(kilo)?grams?|millilit(er|re)s?|lit(er|re)s?)"#,
+            options: [.regularExpression, .caseInsensitive]
+        ) != nil
+    }
+
+    /// Drops trailing `(...)` notes. In the catalog, empty or extra parentheses
+    /// are not grocery measurements and should not appear in list names.
+    static func stripParentheticals(from rawName: String) -> String {
+        var value = rawName
+        value = value.replacingOccurrences(
+            of: #"\([^)]*\)"#,
+            with: "",
+            options: .regularExpression
+        )
+        if let open = value.firstIndex(of: "(") {
+            value = String(value[..<open])
+        }
+        return value
+            .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
     /// Stable merge key for grocery aggregation.
     static func groceryKey(for rawName: String) -> String {
-        var value = rawName
+        var value = stripParentheticals(from: rawName)
             .lowercased()
             .folding(options: .diacriticInsensitive, locale: .current)
             .replacingOccurrences(of: "-", with: " ")

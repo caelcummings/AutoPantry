@@ -5,6 +5,7 @@ struct RecipeFeedView: View {
     @State private var deck: [RecipeSummary] = []
     @State private var currentIndex = 0
     @State private var lastActionMessage: String?
+    @State private var flashClearAction = DeferredUIAction()
 
     private var isFinished: Bool { deck.isEmpty }
 
@@ -25,17 +26,21 @@ struct RecipeFeedView: View {
                         TabView(selection: $currentIndex) {
                             ForEach(Array(deck.enumerated()), id: \.element.id) { offset, recipe in
                                 RecipeCard(recipe: recipe)
-                                    .frame(width: geo.size.width - (APTheme.horizontalPadding * 2), height: geo.size.height)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .padding(.horizontal, APTheme.horizontalPadding)
+                                    .frame(width: geo.size.width, height: geo.size.height)
                                     .tag(offset)
                             }
                         }
                         .tabViewStyle(.page(indexDisplayMode: .never))
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        .clipped()
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .layoutPriority(0)
                     .animation(.spring(response: 0.35, dampingFraction: 0.85), value: deck.count)
 
                     bottomChrome
+                        .layoutPriority(1)
                 }
             }
             .background(APTheme.screenBackground.ignoresSafeArea())
@@ -57,6 +62,8 @@ struct RecipeFeedView: View {
             }
             .onAppear { refreshDeck() }
             .onChange(of: appState.weeklyMealPlan) { _, _ in refreshDeck() }
+            .onChange(of: appState.userRecipes) { _, _ in refreshDeck() }
+            .onDisappear { flashClearAction.cancel() }
         }
     }
 
@@ -68,12 +75,18 @@ struct RecipeFeedView: View {
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
                     .transition(.opacity)
+            } else {
+                // Keep action-button position stable when the flash message appears.
+                Text(" ")
+                    .font(.caption.weight(.semibold))
+                    .hidden()
             }
 
             if shouldShowActionButtons {
                 actionButtons
             }
         }
+        .frame(minHeight: 78)
         .padding(.top, 8)
         .padding(.bottom, 4)
     }
@@ -170,14 +183,7 @@ struct RecipeFeedView: View {
     }
 
     private func refreshDeck(force: Bool = false) {
-        let plannedIDs = Set(appState.weeklyMealPlan.recipes.map(\.id))
-        let profile = appState.userProfile?.nutritionProfile ?? NutritionProfile()
-        let available = RecipeCatalog.deck(
-            excluding: plannedIDs,
-            profile: profile,
-            plan: appState.weeklyMealPlan,
-            isPlanComplete: appState.hasCompletedWeeklyMeals
-        )
+        let available = appState.discoverDeck(isPlanComplete: appState.hasCompletedWeeklyMeals)
         if force || deck.isEmpty {
             deck = available
             currentIndex = 0
@@ -191,12 +197,9 @@ struct RecipeFeedView: View {
 
     private func flashMessage(_ message: String) {
         withAnimation { lastActionMessage = message }
-        Task {
-            try? await Task.sleep(for: .seconds(1.5))
-            await MainActor.run {
-                withAnimation {
-                    if lastActionMessage == message { lastActionMessage = nil }
-                }
+        flashClearAction.schedule(after: .seconds(1.5)) {
+            withAnimation {
+                if lastActionMessage == message { lastActionMessage = nil }
             }
         }
     }

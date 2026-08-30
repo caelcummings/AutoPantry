@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject private var appState: AppState
+    @State private var showResetOnboardingConfirmation = false
 
     private var profile: OnboardingDraft? { appState.userProfile }
     private var plan: WeeklyMealPlan { appState.weeklyMealPlan }
@@ -52,21 +53,42 @@ struct ProfileView: View {
 
                 if let profile {
                     Section {
+                        LabeledContent("Sex", value: profile.bodyProfile.sex.title)
+                        LabeledContent("Age", value: "\(profile.bodyProfile.ageYears)")
+                        LabeledContent("Height", value: profile.bodyProfile.formattedHeight)
+                        LabeledContent("Weight", value: "\(profile.bodyProfile.weightPounds) lb")
+                        LabeledContent("Goal weight", value: "\(profile.bodyProfile.desiredWeightPounds) lb")
+                        LabeledContent("Activity", value: profile.bodyProfile.activityLevel.title)
+                        LabeledContent("Meals / week", value: "\(profile.nutritionProfile.mealsPerWeek)")
+
+                        NavigationLink {
+                            EditBodyProfileView(profile: profile)
+                        } label: {
+                            Label("Edit profile", systemImage: "person.crop.circle")
+                        }
+                    } header: {
+                        Text("Your profile")
+                    } footer: {
+                        Text(profile.bodyProfile.weightGoalSummary)
+                    }
+
+                    Section {
                         Label(profile.macroSummaryLine, systemImage: "chart.bar.fill")
                             .foregroundStyle(APTheme.accent)
                         macroDetailRow("Calories / day", profile.nutritionProfile.calories)
                         macroDetailRow("Protein / day", profile.nutritionProfile.proteinGrams, unit: "g")
                         macroDetailRow("Carbs / day", profile.nutritionProfile.carbsGrams, unit: "g")
                         macroDetailRow("Fat / day", profile.nutritionProfile.fatGrams, unit: "g")
-                        LabeledContent("Meals per week", value: "\(profile.nutritionProfile.mealsPerWeek)")
-                    } header: {
-                        Text("Nutrition profile")
-                    }
 
-                    Section("Preferences") {
-                        LabeledContent("Budget", value: profile.budgetRange.title)
-                        LabeledContent("Cooking skill", value: profile.cookingSkill.title)
-                        LabeledContent("Household", value: "\(profile.householdSize)")
+                        NavigationLink {
+                            EditMacrosView(profile: profile)
+                        } label: {
+                            Label("Edit macros", systemImage: "slider.horizontal.3")
+                        }
+                    } header: {
+                        Text("Nutrition targets")
+                    } footer: {
+                        Text("Targets were estimated from your profile. Adjust anytime to match how you eat.")
                     }
 
                     Section {
@@ -89,9 +111,31 @@ struct ProfileView: View {
                     }
                 } else {
                     Section {
-                        Text("Complete onboarding to set your macro targets.")
+                        Text("Complete onboarding to set your profile and macro targets.")
                             .foregroundStyle(.secondary)
                     }
+                }
+
+                Section {
+                    NavigationLink {
+                        LegalDocumentView(title: "Support", sections: LegalDocuments.support)
+                    } label: {
+                        Label("Support", systemImage: "questionmark.circle")
+                    }
+
+                    NavigationLink {
+                        LegalDocumentView(title: "Privacy Policy", sections: LegalDocuments.privacyPolicy)
+                    } label: {
+                        Label("Privacy Policy", systemImage: "hand.raised")
+                    }
+
+                    Link(destination: URL(string: "mailto:\(AppLegalLinks.supportEmail)")!) {
+                        Label("Email support", systemImage: "envelope")
+                    }
+                } header: {
+                    Text("Help & legal")
+                } footer: {
+                    Text("Your data stays on this device. See Privacy Policy for details.")
                 }
 
                 Section {
@@ -100,27 +144,34 @@ struct ProfileView: View {
                             appState.resetWeeklyPlan()
                         }
                     }
-                    Button("Replay onboarding (preview)") {
-                        appState.resetOnboardingPreview()
+                    Button("Reset profile & redo onboarding", role: .destructive) {
+                        showResetOnboardingConfirmation = true
                     }
+                } footer: {
+                    Text("Resetting clears your profile, weekly plan, pantry list, and favorites.")
                 }
             }
             .navigationTitle("Profile")
+            .confirmationDialog(
+                "Reset profile & redo onboarding?",
+                isPresented: $showResetOnboardingConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button("Reset everything", role: .destructive) {
+                    appState.resetOnboardingPreview()
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("This clears your profile, weekly plan, pantry list, and favorites. You can’t undo this.")
+            }
         }
     }
 
     @ViewBuilder
     private func recipeThumbnail(_ recipe: RecipeSummary) -> some View {
-        AsyncImage(url: recipe.imageURL) { phase in
-            switch phase {
-            case .success(let image):
-                image.resizable().scaledToFill()
-            default:
-                Color.gray.opacity(0.2)
-            }
-        }
-        .frame(width: 52, height: 52)
-        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+        RecipeImageView(recipe: recipe)
+            .frame(width: 52, height: 52)
+            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
     }
 
     private func deleteRecipes(at offsets: IndexSet) {
@@ -139,6 +190,10 @@ struct ProfileView: View {
         var parts: [String] = []
         if recipe.isSnack {
             parts.append("Snack")
+        } else if recipe.isBreakfast {
+            parts.append("Breakfast")
+        }
+        if recipe.isSnack {
             parts.append(recipe.portionCount == 1 ? "1 portion" : "\(recipe.portionCount) portions")
         } else {
             parts.append(recipe.portionCount == 1 ? "1 serving" : "\(recipe.portionCount) servings")

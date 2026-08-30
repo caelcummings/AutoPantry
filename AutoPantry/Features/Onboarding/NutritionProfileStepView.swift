@@ -1,17 +1,49 @@
 import SwiftUI
 
-/// Profile-building step: daily macro ranges + weekly meal-plan context.
+/// Macro ranges step: starts from body-based estimate; user can refine.
 struct NutritionProfileStepView: View {
     @Binding var profile: NutritionProfile
+    var bodyProfile: UserBodyProfile?
+    var showsEstimateActions: Bool = true
     @State private var selectedPreset: MacroPreset?
 
     var body: some View {
         VStack(alignment: .leading, spacing: APTheme.sectionSpacing) {
+            if showsEstimateActions, bodyProfile != nil {
+                estimateBanner
+            }
             presetSection
             macroEditors
-            mealsPerWeekSection
             weeklySummaryCard
         }
+    }
+
+    private var estimateBanner: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Label("Estimated from your profile", systemImage: "sparkles")
+                .font(.headline)
+                .foregroundStyle(APTheme.accent)
+
+            if let bodyProfile {
+                Text(estimateCaption(for: bodyProfile))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            Button {
+                recalculate()
+            } label: {
+                Label("Recalculate from profile", systemImage: "arrow.clockwise")
+                    .font(.subheadline.weight(.semibold))
+            }
+            .tint(APTheme.accent)
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: APTheme.cornerRadius, style: .continuous)
+                .fill(APTheme.accentMuted)
+        )
     }
 
     private var presetSection: some View {
@@ -34,7 +66,9 @@ struct NutritionProfileStepView: View {
         let isSelected = selectedPreset == preset
         return Button {
             selectedPreset = preset
+            let meals = profile.mealsPerWeek
             preset.apply(to: &profile)
+            profile.mealsPerWeek = meals
         } label: {
             VStack(alignment: .leading, spacing: 4) {
                 Text(preset.title)
@@ -97,38 +131,13 @@ struct NutritionProfileStepView: View {
         }
     }
 
-    private var mealsPerWeekSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Meals to plan per week")
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.secondary)
-
-            HStack {
-                Text("\(profile.mealsPerWeek)")
-                    .font(.system(size: 44, weight: .bold, design: .rounded))
-                Text("meals")
-                    .font(.title3)
-                    .foregroundStyle(.secondary)
-                Spacer()
-            }
-
-            Stepper("Breakfasts, lunches, dinners — recipes count by servings", value: $profile.mealsPerWeek, in: 7...35)
-                .font(.subheadline)
-        }
-        .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: APTheme.cornerRadius, style: .continuous)
-                .fill(APTheme.cardBackground)
-        )
-    }
-
     private var weeklySummaryCard: some View {
         VStack(alignment: .leading, spacing: 12) {
             Label("Your weekly targets", systemImage: "calendar")
                 .font(.headline)
                 .foregroundStyle(APTheme.accent)
 
-            Text("Recipes fill this total by servings (a 4-serving recipe counts as 4 meals). Snacks under 300 cal/serving don’t count toward the meal total.")
+            Text("Recipes fill this total by servings (a 4-serving recipe counts as 4 meals). Recipes tagged as snacks don’t count toward the meal total.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
@@ -170,12 +179,31 @@ struct NutritionProfileStepView: View {
                 .monospacedDigit()
         }
     }
+
+    private func estimateCaption(for body: UserBodyProfile) -> String {
+        let bmr = MacroCalculator.basalMetabolicRate(for: body)
+        let maintenance = MacroCalculator.maintenanceCalories(for: body)
+        let target = MacroCalculator.targetCalories(for: body)
+        return "BMR ~\(bmr) · maintenance ~\(maintenance) · target ~\(target) cal/day · \(body.weightGoalSummary)"
+    }
+
+    private func recalculate() {
+        guard let bodyProfile else { return }
+        selectedPreset = nil
+        profile = MacroCalculator.estimate(
+            body: bodyProfile,
+            mealsPerWeek: profile.mealsPerWeek
+        )
+    }
 }
 
 #Preview {
     ScrollView {
-        NutritionProfileStepView(profile: .constant(NutritionProfile()))
-            .padding()
+        NutritionProfileStepView(
+            profile: .constant(NutritionProfile()),
+            bodyProfile: .default
+        )
+        .padding()
     }
     .background(APTheme.screenBackground)
 }

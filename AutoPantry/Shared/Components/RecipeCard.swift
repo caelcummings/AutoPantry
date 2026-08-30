@@ -1,35 +1,54 @@
 import SwiftUI
 
 struct RecipeCard: View {
+    @EnvironmentObject private var appState: AppState
     let recipe: RecipeSummary
+    @State private var showingAllIngredients = false
 
     var body: some View {
         GeometryReader { geo in
-            let detailsHeight = min(max(geo.size.height * 0.34, 132), 168)
-            let imageHeight = max(geo.size.height - detailsHeight, 160)
+            let detailsHeight = showingAllIngredients
+                ? min(max(geo.size.height * 0.58, 220), geo.size.height * 0.72)
+                : min(max(geo.size.height * 0.36, 132), 172)
+            let imageHeight = max(geo.size.height - detailsHeight, 80)
 
             VStack(alignment: .leading, spacing: 0) {
-                recipeImage
+                Color.clear
                     .frame(width: geo.size.width, height: imageHeight)
+                    .overlay {
+                        recipeImage
+                    }
                     .clipped()
                     .overlay(alignment: .bottom) {
                         imageScrim
                     }
+                    .overlay(alignment: .topTrailing) {
+                        FavoriteStarButton(recipeID: recipe.id, size: 18, style: .onImage)
+                            .padding(12)
+                    }
 
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(recipe.title)
-                        .font(.title3.bold())
-                        .foregroundStyle(.primary)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.85)
+                    HStack(alignment: .top, spacing: 8) {
+                        Text(recipe.title)
+                            .font(.title3.bold())
+                            .foregroundStyle(.primary)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.85)
+
+                        Spacer(minLength: 0)
+
+                        if appState.isFavorite(recipeID: recipe.id) {
+                            Image(systemName: "star.fill")
+                                .font(.caption.weight(.bold))
+                                .foregroundStyle(.yellow)
+                                .accessibilityHidden(true)
+                        }
+                    }
 
                     metadataChips
 
                     if !recipe.ingredients.isEmpty {
-                        Text(topIngredientsLine)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(1)
+                        ingredientsPreview
                     }
 
                     Text(servingsAndIngredientsLine)
@@ -38,17 +57,73 @@ struct RecipeCard: View {
                 }
                 .padding(.horizontal, 14)
                 .padding(.vertical, 12)
-                .frame(maxWidth: .infinity, maxHeight: detailsHeight, alignment: .topLeading)
+                .frame(width: geo.size.width, height: detailsHeight, alignment: .topLeading)
                 .background(APTheme.cardBackground)
             }
             .frame(width: geo.size.width, height: geo.size.height, alignment: .top)
+            .clipped()
             .clipShape(RoundedRectangle(cornerRadius: APTheme.cornerRadius + 4, style: .continuous))
             .shadow(color: .black.opacity(0.12), radius: 14, y: 8)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var topIngredientsLine: String {
-        recipe.ingredients.prefix(4).map(\.name).joined(separator: ", ")
+        recipe.ingredients.prefix(4).map(\.displayName).filter { !$0.isEmpty }.joined(separator: ", ")
+    }
+
+    private var canShowMoreIngredients: Bool {
+        recipe.ingredients.count > 4 || showingAllIngredients
+    }
+
+    @ViewBuilder
+    private var ingredientsPreview: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            if showingAllIngredients {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 8) {
+                        ForEach(Array(recipe.ingredients.enumerated()), id: \.offset) { _, ingredient in
+                            HStack(alignment: .top, spacing: 8) {
+                                Text(ingredient.displayName)
+                                    .font(.caption)
+                                    .foregroundStyle(.primary)
+
+                                Spacer(minLength: 8)
+
+                                if !ingredient.displayAmount.isEmpty {
+                                    Text(ingredient.displayAmount)
+                                        .font(.caption.weight(.medium))
+                                        .foregroundStyle(.secondary)
+                                        .multilineTextAlignment(.trailing)
+                                }
+                            }
+                        }
+                    }
+                }
+                .scrollIndicators(.hidden)
+                .frame(minHeight: 0, maxHeight: .infinity, alignment: .top)
+            } else {
+                Text(topIngredientsLine)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+
+            if canShowMoreIngredients {
+                Button {
+                    withAnimation(.easeInOut(duration: 0.22)) {
+                        showingAllIngredients.toggle()
+                    }
+                } label: {
+                    Text(showingAllIngredients ? "Less" : "More")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(APTheme.accent)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(showingAllIngredients ? "Hide full ingredient list" : "Show all ingredients")
+            }
+        }
+        .frame(maxHeight: showingAllIngredients ? .infinity : nil, alignment: .top)
     }
 
     private var servingsAndIngredientsLine: String {
@@ -89,8 +164,14 @@ struct RecipeCard: View {
         let macros = recipe.effectiveMacros
         let prefix = recipe.hasMacros ? "" : "~"
         var items: [(String, String, Bool)] = []
+        if recipe.isUserRecipe {
+            items.append(("My Recipe", "star.circle.fill", true))
+        }
         if recipe.isSnack {
             items.append(("Snack", "carrot.fill", true))
+        }
+        if recipe.isBreakfast {
+            items.append(("Breakfast", "sunrise.fill", true))
         }
         if let cookMinutes = recipe.cookMinutes {
             items.append(("\(cookMinutes)m", "clock", false))
@@ -105,32 +186,8 @@ struct RecipeCard: View {
 
     @ViewBuilder
     private var recipeImage: some View {
-        if let imageURL = recipe.imageURL {
-            AsyncImage(url: imageURL) { phase in
-                switch phase {
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                case .failure:
-                    imagePlaceholder
-                case .empty:
-                    ZStack {
-                        imagePlaceholder
-                        ProgressView().tint(.white)
-                    }
-                @unknown default:
-                    imagePlaceholder
-                }
-            }
-        } else {
-            imagePlaceholder
-                .overlay {
-                    Image(systemName: "fork.knife")
-                        .font(.system(size: 44, weight: .medium))
-                        .foregroundStyle(.white.opacity(0.55))
-                }
-        }
+        RecipeImageView(recipe: recipe)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var imagePlaceholder: some View {
@@ -142,13 +199,19 @@ struct RecipeCard: View {
     }
 
     private func metaChip(_ text: String, icon: String, emphasized: Bool = false) -> some View {
-        Label(text, systemImage: icon)
-            .font(.caption2.weight(.semibold))
-            .foregroundStyle(emphasized ? APTheme.accent : .secondary)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Capsule().fill(emphasized ? APTheme.accentMuted : Color.primary.opacity(0.06)))
-            .lineLimit(1)
+        Group {
+            if text == "My Recipe" {
+                MyRecipeBadge()
+            } else {
+                Label(text, systemImage: icon)
+                    .font(.caption2.weight(.semibold))
+                    .foregroundStyle(emphasized ? APTheme.accent : .secondary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Capsule().fill(emphasized ? APTheme.accentMuted : Color.primary.opacity(0.06)))
+                    .lineLimit(1)
+            }
+        }
     }
 }
 
@@ -156,4 +219,5 @@ struct RecipeCard: View {
     RecipeCard(recipe: RecipeCatalog.feed[0])
         .padding()
         .frame(height: 520)
+        .environmentObject(AppState(route: .main, userProfile: OnboardingDraft()))
 }

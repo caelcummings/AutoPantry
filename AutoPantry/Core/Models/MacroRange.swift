@@ -23,7 +23,7 @@ struct NutritionProfile: Equatable, Codable {
     var proteinGrams: MacroRange = .defaultProtein()
     var carbsGrams: MacroRange = .defaultCarbs()
     var fatGrams: MacroRange = .defaultFat()
-    var mealsPerWeek: Int = 14
+    var mealsPerWeek: Int = 21
 
     var isValid: Bool {
         calories.isValid && proteinGrams.isValid && carbsGrams.isValid && fatGrams.isValid
